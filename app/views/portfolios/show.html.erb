@@ -1,0 +1,50 @@
+<br>
+<%= link_to 'Delete', @portfolio, :method => :delete, :confirm => 'Is it ok to delete?' %>
+<br>
+<%= link_to 'Edit', edit_portfolio_path(@portfolio) %>
+<br>
+Portfolio Name:
+<br>
+<%= link_to(@portfolio.name, @portfolio) %>
+<br>
+Cash Balance:
+<br>
+<%= @portfolio.cash_balance %>
+<br>
+<% @portfolio.stocks.each do |stock| %>
+  <br>
+  <%= link_to 'Delete', stock, :method => :delete, :confirm => 'Is it ok to delete?' %>
+  <br>
+  <%= link_to 'Edit', edit_stock_path(stock) %>
+  <br>
+  Stock Symbol:
+  <br>
+  <%= link_to(stock.symbol, stock) %>
+  <br>
+  Number of Shares:
+  <br>
+  <%= stock.number_of_shares %>
+  <br>
+  Sell Shares:
+<form method="post" action="/portfolio/sell">
+<input type="hidden" name="id" value="<%= @portfolio.id %>">
+<input type="text" name="symbol" value="<%= stock.symbol %>">
+<input type="text" name="number_of_shares" value="<% stock.number_of_shares %>">
+<button>Sell Shares!</button>
+</form>
+<% end %>
+Buy Shares!
+<form method="post" action="/portfolio/buy">
+<input type="hidden" name="id" value="<%= @portfolio.id %>">
+<input type="text" name="symbol">
+<input type="text" name="number_of_shares">
+<button>Buy Shares!</button>
+</form>
+
+Sell Shares:
+<form method="post" action="/portfolio/sell">
+<input type="hidden" name="id" value="<%= @portfolio.id %>">
+<input type="text" name="symbol">
+<input type="text" name="number_of_shares">
+<button>Sell Shares!</button>
+</form>

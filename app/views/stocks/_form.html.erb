@@ -1,0 +1,13 @@
+<%= form_for @stock do |f| %>
+  <br>
+  <%= f.label :symbol, "Stock Symbol" %>
+  <br>
+  <%= f.text_field :symbol, :autofocus => 'autofocus' %>
+  <br>
+  <%= f.label :number_of_shares, "Number of Shares" %>
+  <br>
+  <%= f.text_field :number_of_shares %>
+  <br>
+  <%= f.submit %>
+  <br>
+<% end %>

@@ -1,0 +1,11 @@
+<% @stocks.each do |stock| %>
+  <br>
+  Stock Symbol:
+  <br>
+  <%= link_to(stock.symbol, stock) %>
+  <br>
+  Number of Shares:
+  <br>
+  <%= stock.number_of_shares %>
+  <br>
+<% end %>

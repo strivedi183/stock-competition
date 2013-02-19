@@ -1,0 +1,56 @@
+
+
+
+  <!-- Main Grid Section -->
+
+  <div class="row">
+  <% @users.each do |user| %>
+    <div class="four columns">
+      <div class="panel">
+        <h5><%= link_to 'Edit', edit_user_path(user), :class => 'tiny button'  %> <%= link_to 'New Portfolio', new_portfolio_path, :class => 'tiny button'  %>
+        <h5>Investor Name: <%= link_to(user.name, user) %></h5>
+      </div>
+        <% user.portfolios.each do |portfolio| %>
+        <div class="panel">
+          <h4><small>  <%= link_to 'Edit', edit_portfolio_path(portfolio), :class => 'tiny button'  %> <%= link_to(portfolio.name, portfolio) %></small></h4>
+          <h4><small>Cash Balance:</small></h4>
+          <h4><small><%= number_to_currency(portfolio.cash_balance) %></small></h4>
+          <h4><small>Buy Shares!</h4></small>
+            <form method="post" action="/portfolio/buy">
+            <input type="hidden" name="id" value="<%= portfolio.id %>">
+            <h4><small>Stock Symbol:</small></h4>
+            <input type="text" name="symbol">
+            <h4><small>Number of Shares:</small></h4>
+            <input type="text" name="number_of_shares">
+            <button class="small success button">Buy Shares!</button>
+            </form>
+            <form method="get" action="/stocks/extended_quote">
+            <h4><small>Research Stock: </small</h4>
+            <input type="text" name="symbol" autofocus>
+            <button class="small button">Get Detailed Quote</button>
+            </form>
+        </div>
+          <div class="panel">
+            <% portfolio.stocks.each do |stock| %>
+              <h4><small>Stock Symbol: <%= link_to(stock.symbol, stock) %></small></h4>
+              <h4><small>Number of Shares: <%= stock.number_of_shares %></small></h4>
+             <h4><small>Current Share Price: <%= number_to_currency(Stock.quote(stock.symbol)) %>
+              </small></h4>
+              <form method="post" action="/portfolio/sell">
+                <input type="hidden" name="id" value="<%= portfolio.id %>">
+                <input type="hidden" name="symbol" value="<%= stock.symbol %>">
+                <h4><small>Number of Shares:</small></h4>
+                <input type="text" name="number_of_shares" value="<% stock.number_of_shares %>">
+              <button class="small alert button">Sell Shares!</button>
+              </form>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+  <% end %>
+  </div>
+
+
+
+
+  <!-- End Grid Section -->

@@ -1,0 +1,13 @@
+<br>
+<%= link_to 'Delete', @stock, :method => :delete, :confirm => 'Is it ok to delete?' %>
+<br>
+<%= link_to 'Edit', edit_stock_path(@stock) %>
+<br>
+Stock Symbol:
+<br>
+<%= link_to(@stock.symbol, @stock) %>
+<br>
+Number of Shares:
+<br>
+<%= @stock.number_of_shares %>
+<br>

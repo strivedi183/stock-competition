@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="four columns">
+    <div class="panel">
+      <%= link_to 'Delete', @user, :method => :delete, :confirm => 'Is it ok to delete?', :class => 'small button' %>
+      <%= link_to 'Edit', edit_user_path(@user), :class => 'small button' %>
+<br>
+<h3><small>Investor Name: </small><small><%= @user.name %></small></h3>
+    </div>
+  </div>
+
+  <% @user.portfolios.each do |portfolio| %>
+    <div class="four columns">
+      <div class="panel">
+        <h4><small>  <%= link_to 'Edit', edit_portfolio_path(portfolio), :class => 'tiny button'  %> <%= link_to(portfolio.name, portfolio) %></small></h4>
+        <h4><small>Cash Balance:</small></h4>
+        <h4><small><%= number_to_currency(portfolio.cash_balance) %></small></h4>
+        <% portfolio.stocks.each do |stock| %>
+        <%= link_to 'Buy', stock, :method => :delete, :confirm => 'Is it ok to delete?', :class => 'tiny alert button' %>
+        <%= link_to 'Sell', edit_stock_path(stock), :class => 'tiny alert button' %>
+      <br>
+      Stock Symbol:
+      <br>
+      <%= link_to(stock.symbol, stock) %>
+      <br>
+      Number of Shares:
+      <br>
+      <%= stock.number_of_shares %>
+      <br>
+      Share Price
+      <br>
+      <%= Stock.quote(stock.symbol) %>
+      <br>
+      Extended Quote, More Stock Info
+      <br>
+      <%= Stock.extended_quote(stock.symbol) %>
+      <br>
+      <% end %>
+<% end %>
+</div>

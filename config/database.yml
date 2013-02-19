@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: stock-competition_development
+  pool: 5
+  host: localhost
+  username: strivedi
+  password:

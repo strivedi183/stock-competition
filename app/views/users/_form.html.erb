@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="four columns">
+    <div class="panel">
+<%= form_for @user do |f| %>
+  <br>
+  <%= f.label :name, "Investor Name" %>
+  <br>
+  <%= f.text_field :name, :autofocus => 'autofocus' %>
+  <br>
+  <%= f.label :password, "Password" %>
+  <br>
+  <%= f.text_field :password %>
+  <br>
+  <%= f.submit :class => 'small button' %>
+  <br>
+<% end %>
+</div>
+</div>
+</div>

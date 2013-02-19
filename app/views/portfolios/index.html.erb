@@ -1,0 +1,11 @@
+<% @portfolios.each do |portfolio| %>
+  <br>
+  Portfolio Name:
+  <br>
+  <%= link_to(portfolio.name, portfolio) %>
+  <br>
+  Cash Balance:
+  <br>
+  <%= portfolio.cash_balance %>
+  <br>
+<% end %>
